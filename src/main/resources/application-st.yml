@@ -1,0 +1,11 @@
+
+---
+system:
+  env: st
+
+---
+server:
+  port: 8085
+  servlet:
+    context-path: /woodpecker-st
+

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Configuration status="WARN" name="woodpecker">
-<!--    Level	intValue  用途 -->
-<!--    OFF	    0         不輸出任何日誌-->
-<!--    FETAL	100	      造成應用程式停止的日誌-->
-<!--    ERROR	200	      造成應用程式錯誤的日誌-->
-<!--    WARN	300	      可能導致錯誤的日誌-->
-<!--    INFO	400	      一般資訊的日誌-->
-<!--    DEBUG	500	      除錯資訊的日誌-->
-<!--    TRACE	600	      更細的除錯資訊，通常用來追蹤程式流程的日誌-->
-<!--    ALL	Integer.MAX_VALUE	輸出所有日誌-->
+    <!--    Level	intValue  用途 -->
+    <!--    OFF	    0         不輸出任何日誌 -->
+    <!--    FETAL   100       造成應用程式停止的日誌 -->
+    <!--    ERROR   200       造成應用程式錯誤的日誌 -->
+    <!--    WARN    300       可能導致錯誤的日誌 -->
+    <!--    INFO    400       一般資訊的日誌 -->
+    <!--    DEBUG   500       除錯資訊的日誌 -->
+    <!--    TRACE   600       更細的除錯資訊，通常用來追蹤程式流程的日誌 -->
+    <!--    ALL     Integer.MAX_VALUE   輸出所有日誌 -->
     <Properties>
-        <Property name="log-path">logs</Property>
-        <Property name="logfile-name">woodpecker</Property>
+        <Property name="LOG_PATH">logs</Property>
+        <Property name="LOG_FILE_NAME">woodpecker</Property>
         <Property name="LOG_EXCEPTION_CONVERSION_WORD">%xwEx</Property>
         <Property name="LOG_LEVEL_PATTERN">%5p</Property>
         <Property name="SPLIT_SIZE">10MB</Property>
@@ -21,7 +21,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{${LOG_LEVEL_PATTERN}} %clr{${sys:PID}}{magenta} %clr{---}{faint} %clr{[%15.15t]}{faint} %clr{%-40.40c{1.}}{cyan} %clr{:}{faint} %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}"/>
         </Console>
-        <RollingFile name="RollingFile" filePattern="${log-path}/${logfile-name}-%d{yyyy-MM-dd}-%i.log">
+        <RollingFile name="RollingFile" filePattern="${LOG_PATH}/${LOG_FILE_NAME}-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN} ${sys:PID} --- [%15.15t] %c : %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}" />
             <Policies>
                 <SizeBasedTriggeringPolicy size="${SPLIT_SIZE}" />
@@ -36,8 +36,9 @@
 
     <Loggers>
         <!--Root level logger to control overall logging-->
-        <Root level="ERROR">
+        <Root level="DEBUG">
             <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
         </Root>
         <!--Logger for org.springframework.boot package-->
         <Logger name="org.springframework" level="INFO" additivity="false">

@@ -10,10 +10,10 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 public class WoodpeckerApplication {
 
 	public static void main(String[] args) {
-		log.warn("Warning");
-		log.info("Info");
-		log.error("Error");
-		log.debug("Debug");
+		log.warn("warn");
+		log.info("info");
+		log.error("error");
+		log.debug("debug");
 		SpringApplication.run(WoodpeckerApplication.class, args);
 	}
 
