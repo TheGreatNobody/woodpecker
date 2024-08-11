@@ -10,3 +10,11 @@ server:
   servlet:
     context-path: /woodpecker
 
+# jdbc:mysql:// server-name : server-port / database-name Note – NOTE: Default server port is 3306
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/world?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: woodpecker
+    password: p@ssw0rd
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+
