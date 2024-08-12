@@ -1,30 +1,26 @@
 package tw.com.nobody.woodpecker.api.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import tw.com.nobody.woodpecker.api.service.CityService;
 import tw.com.nobody.woodpecker.api.service.bo.CityRelayBo;
 import tw.com.nobody.woodpecker.models.dto.CityDto;
 import tw.com.nobody.woodpecker.models.mapper.CityMapper;
 
-//@Component
+@Log4j2
 @Service
 public class CityServiceImpl implements CityService {
 
-    @Autowired
-    private CityMapper cityMapper;
+    private final CityMapper cityMapper;
 
     public CityServiceImpl(CityMapper cityMapper) {
         this.cityMapper = cityMapper;
     }
 
-//    public void setCityMapper(CityMapper cityMapper) {
-//        this.cityMapper = cityMapper;
-//    }
-
     @Override
     public CityRelayBo getCityById(Integer id) {
         CityDto cityDto = cityMapper.findById(id);
+        log.debug(cityDto.toString());
         CityRelayBo cityRelayBo = new CityRelayBo();
         cityRelayBo.setName(cityDto.getName());
         cityRelayBo.setCountryCode(cityDto.getCountryCode());
